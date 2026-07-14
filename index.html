@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calvary Tabernacle</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Work+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+/* ============================================================
+   CALVARY TABERNACLE — DESIGN TOKENS
+   Edit the values below to restyle the entire site.
+   ============================================================ */
+:root{
+  /* ---- Palette -------------------------------------------- */
+  --color-cream:        #FAF6EC;   /* main light background, like hymnal paper */
+  --color-cream-deep:   #F0E8D6;   /* secondary light background / cards */
+  --color-ink:          #201E1B;   /* primary text on light */
+  --color-ink-soft:     #6B655C;   /* secondary text on light */
+  --color-night:        #171512;   /* dark background (footer, hero header) */
+  --color-night-deep:   #0F0D0B;   /* deepest dark background */
+  --color-burgundy:     #7a237c;   /* liturgical wine — primary accent */
+  --color-burgundy-deep:#591723;   /* hover / pressed state of accent */
+  --color-gold:         #a958f1;   /* brass / candlelight — secondary accent */
+  --color-gold-soft:    #7f3c8c;   /* highlight tint of gold */
+  --color-line:         rgba(32,30,27,0.12);
+  --color-line-dark:    rgba(250,246,236,0.14);
+
+  /* ---- Type -------------------------------------------------*/
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body:    'Work Sans', -apple-system, sans-serif;
+  --font-mono:    'IBM Plex Mono', monospace;
+
+  /* ---- Layout ------------------------------------------------*/
+  --container:    1240px;
+  --container-narrow: 760px;
+  --section-pad-y: 128px;
+  --section-pad-y-sm: 72px;
+  --radius-sm: 3px;
+  --radius-md: 10px;
+  --radius-lg: 22px;
+
+  /* ---- Motion ------------------------------------------------*/
+  --ease-out: cubic-bezier(.16,.84,.44,1);
+  --dur-med: .7s;
+  --dur-slow: 1.1s;
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{ animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
+}
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*,*::before,*::after{ box-sizing: border-box; }
+html{ scroll-behavior: smooth; }
+body{
+  margin:0;
+  font-family: var(--font-body);
+  color: var(--color-ink);
+  background: var(--color-cream);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img{ max-width:100%; display:block; }
+a{ color: inherit; text-decoration: none; }
+ul{ list-style:none; margin:0; padding:0; }
+h1,h2,h3,h4,p{ margin:0; }
+button{ font-family: inherit; cursor:pointer; }
+.wrap{ max-width: var(--container); margin:0 auto; padding: 0 40px; }
+.wrap-narrow{ max-width: var(--container-narrow); margin:0 auto; padding: 0 40px; }
+
+a:focus-visible, button:focus-visible{
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+}
+
+/* Eyebrow / label style, echoes the wireframe's tagged labels */
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--color-burgundy);
+  font-weight:500;
+}
+.eyebrow::before{
+  content:"";
+  width:20px; height:1px;
+  background: var(--color-gold);
+  display:inline-block;
+}
+.on-dark .eyebrow{ color: var(--color-gold-soft); }
+
+.section-head{
+  max-width: 620px;
+  margin-bottom: 56px;
+}
+.section-head h2{
+  font-family: var(--font-display);
+  font-weight:500;
+  font-size: clamp(30px, 4vw, 46px);
+  line-height:1.12;
+  margin-top:14px;
+  letter-spacing:-.01em;
+}
+.section-head p{
+  margin-top:18px;
+  font-size:16.5px;
+  line-height:1.65;
+  color: var(--color-ink-soft);
+  max-width: 52ch;
+}
+.section-head.center{ margin-left:auto; margin-right:auto; text-align:center; }
+.section-head.center p{ margin-left:auto; margin-right:auto; }
+.section-head.center .eyebrow::before{ display:none; }
+
+/* Buttons ---------------------------------------------------- */
+.btn{
+  position: relative;
+  display: inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  padding: 16px 30px;
+  font-family: var(--font-body);
+  font-weight:600;
+  font-size: 14.5px;
+  letter-spacing:.01em;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  transition: transform .45s var(--ease-out), box-shadow .45s var(--ease-out), background .3s ease, color .3s ease, border-color .3s ease;
+  isolation: isolate;
+  overflow:hidden;
+}
+.btn-primary{
+  background: var(--color-burgundy);
+  color: var(--color-cream);
+  box-shadow: 0 0 0 0 rgba(198,153,47,0);
+  animation: flicker 5s ease-in-out infinite;
+}
+.btn-primary:hover{
+  background: var(--color-burgundy-deep);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 26px -10px rgba(89,23,35,.55), 0 0 0 4px rgba(198,153,47,.18);
+}
+@keyframes flicker{
+  0%,100%{ box-shadow: 0 6px 18px -8px rgba(198,153,47,.35); }
+  50%{ box-shadow: 0 6px 22px -6px rgba(198,153,47,.55); }
+}
+.btn-ghost{
+  background: transparent;
+  color: var(--color-ink);
+  border-color: var(--color-line);
+}
+.btn-ghost:hover{
+  border-color: var(--color-ink);
+  transform: translateY(-2px);
+}
+.on-dark .btn-ghost{ color: var(--color-cream); border-color: var(--color-line-dark); }
+.on-dark .btn-ghost:hover{ border-color: var(--color-cream); }
+
+.btn-small{ padding:12px 22px; font-size:13px; }
+
+.btn-underline{
+  display:inline-flex; align-items:center; gap:8px;
+  font-weight:600; font-size:14.5px; color: var(--color-burgundy);
+  padding-bottom:3px;
+  border-bottom:1px solid currentColor;
+  transition: gap .3s var(--ease-out), color .3s ease;
+}
+.btn-underline:hover{ gap:14px; color: var(--color-burgundy-deep); }
+.on-dark .btn-underline{ color: var(--color-gold-soft); }
+
+/* Reveal-on-scroll -------------------------------------------- */
+.reveal{
+  opacity:0;
+  transform: translateY(28px);
+  transition: opacity var(--dur-med) var(--ease-out), transform var(--dur-med) var(--ease-out);
+}
+.reveal.is-visible{ opacity:1; transform:none; }
+.reveal-delay-1.is-visible{ transition-delay:.1s; }
+.reveal-delay-2.is-visible{ transition-delay:.2s; }
+.reveal-delay-3.is-visible{ transition-delay:.3s; }
+
+/* Photo placeholder system ------------------------------------
+   Swap these for real photography — replace the `background`
+   gradient on each .ph-N rule with:
+   background-image:url('your-photo.jpg'); background-size:cover; background-position:center;
+------------------------------------------------------------- */
+.ph{
+  position:relative;
+  border-radius: var(--radius-md);
+  overflow:hidden;
+  background-color: var(--color-cream-deep);
+  background-blend-mode: multiply;
+}
+.ph::after{
+  content:"";
+  position:absolute; inset:0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+  opacity:.5;
+  pointer-events:none;
+}
+.ph-tag{
+  position:absolute; left:14px; bottom:14px;
+  font-family: var(--font-mono);
+  font-size:10.5px;
+  letter-spacing:.06em;
+  color: rgba(255,255,255,.85);
+  background: rgba(23,21,18,.4);
+  padding:5px 9px;
+  border-radius: 20px;
+  border:1px dashed rgba(255,255,255,.5);
+  z-index:1;
+  text-transform: uppercase;
+}
+.ph-1{ background-image: url("photos/pastorHero.jpg"); background-size: cover; background-position: center; }
+.ph-2{ background-image:url("photos/prayingABT.jpg"); background-size: cover; background-position: center;}
+.ph-3{ background-image: url("photos/drumsHero.jpg"); background-size: cover; background-position: center; }
+.ph-4{ background-image: url("photos/choirHero.jpg"); background-size: cover; background-position: center; }
+.ph-5{ background-image: url("photos/congregationHero.jpg"); background-size: cover; background-position: center; }
+.ph-6{ background-image: url("photos/firstTime.jpg"); background-size: cover; background-position: center; }
+.ph-7{ background-image: url("photos/babyDedication.jpg"); background-size: cover; background-position: center; }
+.ph-8{ background-image: linear-gradient(160deg,#efd9a3,#c6992f); }
+.ph-9{ background-image: linear-gradient(160deg,#4c3a29,#1c150e); }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{
+  position:relative;
+  background: var(--color-cream);
+  color: var(--color-night);
+  overflow:hidden;
+}
+.hero-header{
+  position:relative;
+  z-index:5;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding: 30px 40px;
+  max-width: var(--container);
+  margin:0 auto;
+}
+.logo{
+  font-family: var(--font-display);
+  font-size: 21px;
+  font-weight:600;
+  letter-spacing:.01em;
+  display:flex; align-items:center; gap:10px;
+  color: var(--color-cream);
+}
+.logo .mark{
+  width:30px; height:30px;
+  border-radius:50%;
+  background: radial-gradient(circle at 35% 30%, var(--color-gold-soft), var(--color-gold) 60%, var(--color-burgundy-deep));
+  flex-shrink:0;
+}
+.menu-toggle{
+  background:none; border:1px solid var(--color-line-dark);
+  border-radius: var(--radius-sm);
+  width:44px; height:40px;
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:5px;
+  transition: border-color .3s ease, background .3s ease;
+}
+.menu-toggle span{ width:18px; height:1.5px; background: var(--color-cream); display:block; transition: transform .35s var(--ease-out), opacity .3s ease; }
+.menu-toggle:hover{ border-color: var(--color-gold); }
+.menu-toggle.is-open span:nth-child(1){ transform: translateY(6.5px) rotate(45deg); }
+.menu-toggle.is-open span:nth-child(2){ opacity:0; }
+.menu-toggle.is-open span:nth-child(3){ transform: translateY(-6.5px) rotate(-45deg); }
+
+.hero-dropdown{
+  position:absolute; top:calc(100% + 8px); right:40px;
+  background: var(--color-night-deep);
+  border:1px solid var(--color-line-dark);
+  border-radius: var(--radius-md);
+  padding: 14px;
+  min-width: 220px;
+  display:flex; flex-direction:column;
+  opacity:0; visibility:hidden; transform: translateY(-8px);
+  transition: opacity .3s var(--ease-out), transform .3s var(--ease-out), visibility .3s;
+  z-index: 20;
+}
+.hero-dropdown.is-open{ opacity:1; visibility:visible; transform:none; }
+.hero-dropdown a{
+  padding: 11px 12px;
+  font-size: 14.5px;
+  border-radius: var(--radius-sm);
+  color: var(--color-cream);
+  transition: background .25s ease, padding-left .25s ease, color .25s ease;
+}
+.hero-dropdown a:hover{ background: rgba(198,153,47,.14); padding-left:16px; color: var(--color-gold-soft); }
+
+.hero-body{
+  max-width: var(--container);
+  margin:0 auto;
+  padding: 30px 40px 100px;
+  border-bottom: 3px solid var(--color-line);
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items:center;
+}
+.hero-content{ max-width: 480px; padding-top: 30px;}
+.hero-content .eyebrow{ margin-bottom: 22px; }
+.hero-content h1{
+  font-family: var(--font-display);
+  font-weight:500;
+  font-size: clamp(38px, 5vw, 58px);
+  line-height: 1.08;
+  letter-spacing:-.015em;
+}
+.hero-content h1 em{
+  font-style:italic;
+  font-weight:500;
+  color: var(--color-gold-soft);
+}
+.hero-content p{
+  margin-top: 24px;
+  font-size: 17px;
+  line-height: 1.7;
+  color: rgba(250,246,236,.72);
+  max-width: 42ch;
+}
+.hero-actions{ margin-top:38px; display:flex; gap:16px; flex-wrap:wrap; }
+
+.hero-collage{
+  position:relative;
+  height: 620px;
+  display:grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 18px;
+}
+.collage-col{ display:flex; flex-direction:column; gap:18px; will-change: transform; }
+.collage-col--b{ transform: translateY(-64px); }
+.collage-col .ph:nth-child(1){ height: 250px;  }
+.collage-col .ph:nth-child(2){ height: 190px; }
+.collage-col--b .ph:nth-child(1){ height: 300px; }
+.collage-col--b .ph:nth-child(2){ height: 230px; }
+
+.collage-badge{
+  position:absolute;
+  right: -14px; bottom: -14px;
+  width: 118px; height:118px;
+  border-radius:50%;
+  background: var(--color-burgundy);
+  color: var(--color-cream);
+  display:flex; align-items:center; justify-content:center;
+  text-align:center;
+  font-family: var(--font-mono);
+  font-size:11.5px;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+  line-height:1.4;
+  box-shadow: 0 18px 40px -12px rgba(0,0,0,.55);
+  cursor:pointer;
+  border: 1px solid rgba(231,200,119,.4);
+  z-index:4;
+  transition: transform .4s var(--ease-out);
+}
+.collage-badge:hover{ transform: scale(1.06); }
+.collage-badge svg{ width:20px; height:20px; }
+
+.hero-fade{
+  position:absolute; inset:auto 0 0 0; height:140px;
+  background: linear-gradient(to top, var(--color-night), transparent);
+  pointer-events:none;
+  z-index:2;
+}
+
+@media (max-width: 980px){
+  .hero-body{ grid-template-columns: 1fr; padding-bottom:70px; }
+  .hero-collage{ height: 420px; order:-1; }
+  .collage-col .ph:nth-child(1){ height:170px;} .collage-col .ph:nth-child(2){ height:130px;}
+  .collage-col--b .ph:nth-child(1){ height:200px;} .collage-col--b .ph:nth-child(2){ height:150px;}
+  .hero-content{ max-width:none; padding-top:6px; }
+}
+
+/* ============================================================
+   STICKY SECTION NAV
+   ============================================================ */
+.sticky-nav{
+  position: sticky;
+  top: -1px;
+  z-index: 50;
+  background: rgba(250,246,236,.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--color-line);
+  transform: translateY(-8px);
+  opacity:0;
+  transition: opacity .4s var(--ease-out), transform .4s var(--ease-out), box-shadow .3s ease;
+}
+.sticky-nav.is-visible{ opacity:1; transform:none; }
+.sticky-nav.is-scrolled{ box-shadow: 0 10px 30px -18px rgba(32,30,27,.35); }
+.sticky-nav-inner{
+  max-width: var(--container);
+  margin:0 auto;
+  padding: 0 40px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  height: 66px;
+}
+.sticky-logo{
+  font-family: var(--font-display);
+  font-weight:600;
+  font-size:17px;
+  display:flex; align-items:center; gap:8px;
+}
+.sticky-logo .mark{ width:20px;height:20px;border-radius:50%; background: radial-gradient(circle at 35% 30%, var(--color-gold-soft), var(--color-gold) 60%, var(--color-burgundy-deep)); }
+.sticky-links{ display:flex; gap: 30px; }
+.sticky-links a{
+  font-size: 13.5px;
+  font-weight:500;
+  color: var(--color-ink-soft);
+  position:relative;
+  padding: 4px 0;
+  transition: color .25s ease;
+}
+.sticky-links a::after{
+  content:""; position:absolute; left:0; bottom:0; height:1px; width:0;
+  background: var(--color-burgundy);
+  transition: width .3s var(--ease-out);
+}
+.sticky-links a:hover{ color: var(--color-ink); }
+.sticky-links a:hover::after{ width:100%; }
+.sticky-cta{ display:flex; align-items:center; gap:20px; }
+.sticky-nav-toggle{ display:none; background:none; border:1px solid var(--color-line); border-radius:var(--radius-sm); width:40px; height:36px; align-items:center; justify-content:center; }
+.sticky-nav-toggle span{ display:block; width:16px; height:1.5px; background:var(--color-ink); position:relative; }
+.sticky-nav-toggle span::before,.sticky-nav-toggle span::after{ content:""; position:absolute; left:0; width:16px; height:1.5px; background:var(--color-ink); }
+.sticky-nav-toggle span::before{ top:-5px; } .sticky-nav-toggle span::after{ top:5px; }
+
+@media (max-width: 900px){
+  .sticky-links{
+    position:absolute; top:66px; left:0; right:0;
+    flex-direction:column; gap:0;
+    background: var(--color-cream);
+    border-bottom:1px solid var(--color-line);
+    max-height:0; overflow:hidden;
+    transition: max-height .4s var(--ease-out);
+  }
+  .sticky-links.is-open{ max-height:420px; }
+  .sticky-links a{ padding: 15px 40px; border-top:1px solid var(--color-line); }
+  .sticky-nav-toggle{ display:flex; }
+  .sticky-cta .btn-small{ display:none; }
+}
+
+/* ============================================================
+   GENERIC SECTION SPACING + PARALLAX WRAPPERS
+   ============================================================ */
+section{ padding: var(--section-pad-y) 0; position:relative; }
+.section-dark{ background: var(--color-night); color: var(--color-cream); }
+.section-tint{ background: var(--color-cream-deep); }
+.parallax-el{ will-change: transform; }
+
+/* ============================================================
+   QUICK ABOUT
+   ============================================================ */
+.about-grid{
+  display:grid;
+  grid-template-columns: .85fr 1fr;
+  gap: 70px;
+  align-items:center;
+}
+.about-media{ position:relative; height: 480px; }
+.about-media .ph{ position:absolute; inset:0; height:100%; transition: all .3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+.about-media .ph:hover { transform: scale(1.02); filter: drop-shadow(0px 5px 5px); }
+.about-media .ph-tag{ position:absolute; }
+.about-accent{
+  position:absolute; bottom:-26px; left:-26px;
+  width:150px; height:110px;
+  border: 6px solid var(--color-cream);
+  background: var(--color-gold);
+  border-radius: var(--radius-md);
+  background-image: url("photos/praisingABT.jpg"); background-size: cover; background-position: center;
+  z-index:2;
+  box-shadow: 0 20px 40px -18px rgba(32,30,27,.4);
+}
+.about-copy h2{
+  font-family: var(--font-display); font-weight:500;
+  font-size: clamp(28px,3.6vw,42px); line-height:1.15; margin-top:14px;
+}
+.about-copy p{ margin-top:20px; font-size:16.5px; line-height:1.7; color:var(--color-ink-soft); max-width:48ch; }
+.about-actions{ margin-top:32px; display:flex; gap:16px; flex-wrap:wrap; }
+
+@media (max-width:900px){
+  .about-grid{ grid-template-columns:1fr; gap:40px; }
+  .about-media{ height:340px; }
+}
+
+/* ============================================================
+   NEW HERE
+   ============================================================ */
+.newhere-grid{
+  display:grid;
+  grid-template-columns: 1fr .85fr;
+  gap: 70px;
+  align-items:center;
+}
+.newhere-media{ position:relative; height:480px; order:2; }
+.newhere-media .ph{ position:absolute; inset:0; height:100%; }
+.newhere-list{ margin-top:28px; display:flex; flex-direction:column; gap:16px; }
+.newhere-list li{ display:flex; gap:14px; align-items:flex-start; font-size:15px; color:var(--color-ink-soft); line-height:1.5; }
+.newhere-list .num{
+  font-family:var(--font-mono); font-size:11.5px; color:var(--color-cream);
+  background: var(--color-burgundy); width:24px; height:24px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:1px;
+}
+.newhere-copy h2{ font-family: var(--font-display); font-weight:500; font-size: clamp(28px,3.6vw,42px); line-height:1.15; margin-top:14px; }
+.newhere-copy > p{ margin-top:18px; font-size:16.5px; line-height:1.7; color:var(--color-ink-soft); max-width:46ch; }
+.newhere-copy .btn{ margin-top:30px; }
+
+@media (max-width:900px){
+  .newhere-grid{ grid-template-columns:1fr; gap:40px; }
+  .newhere-media{ height:300px; order:0; }
+}
+
+/* ============================================================
+   MINISTRIES
+   ============================================================ */
+.min-grid{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  background: var(--color-line);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  overflow:hidden;
+}
+.min-card{
+  background: var(--color-cream);
+  padding: 38px 32px;
+  transition: background .4s ease, transform .4s var(--ease-out);
+  position:relative;
+}
+.min-card:hover{ background: var(--color-cream-deep); transform: translateY(-4px); }
+.min-card .icon{
+  width:44px; height:44px; border-radius:50%;
+  background: rgba(124,35,51,.08);
+  display:flex; align-items:center; justify-content:center;
+  color: var(--color-burgundy);
+  margin-bottom:22px;
+  transition: background .3s ease, transform .4s var(--ease-out);
+}
+.min-card:hover .icon{ background: var(--color-burgundy); color:var(--color-cream); transform: rotate(-8deg); }
+.min-card h3{ font-family: var(--font-display); font-size:20px; font-weight:600; }
+.min-card p{ margin-top:10px; font-size:14.5px; line-height:1.6; color:var(--color-ink-soft); }
+.min-card a{ display:inline-flex; margin-top:16px; font-size:13px; font-weight:600; color: var(--color-burgundy); }
+
+@media (max-width:900px){ .min-grid{ grid-template-columns:1fr 1fr; } }
+@media (max-width:600px){ .min-grid{ grid-template-columns:1fr; } }
+
+/* ============================================================
+   EVENTS
+   ============================================================ */
+.section-head-row{
+  display:flex; align-items:flex-end; justify-content:space-between; gap:30px;
+  margin-bottom: 56px;
+  flex-wrap:wrap;
+}
+.events-grid{ display:grid; grid-template-columns: repeat(3,1fr); gap:26px; }
+.event-card{
+  border-radius: var(--radius-md);
+  overflow:hidden;
+  background: var(--color-cream);
+  border: 1px solid var(--color-line);
+  transition: transform .45s var(--ease-out), box-shadow .45s var(--ease-out);
+}
+.event-card:hover{ transform: translateY(-8px); box-shadow: 0 24px 46px -22px rgba(32,30,27,.28); }
+.event-media{ position:relative; height:190px; }
+.event-media .ph{ position:absolute; inset:0; height:100%; border-radius:0; }
+.event-date{
+  position:absolute; top:14px; left:14px; z-index:2;
+  background: var(--color-cream); border-radius: var(--radius-sm);
+  padding: 8px 12px; text-align:center; line-height:1.1;
+  box-shadow: 0 8px 20px -10px rgba(0,0,0,.4);
+}
+.event-date .d{ font-family: var(--font-display); font-size:19px; font-weight:600; color:var(--color-burgundy); }
+.event-date .m{ font-family: var(--font-mono); font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:var(--color-ink-soft); }
+.event-body{ padding: 22px 22px 26px; }
+.event-body .time{ font-family: var(--font-mono); font-size:11.5px; letter-spacing:.05em; text-transform:uppercase; color:var(--color-burgundy); }
+.event-body h3{ font-family: var(--font-display); font-size: 19px; font-weight:600; margin-top:8px; }
+.event-body p{ margin-top:8px; font-size:14px; color:var(--color-ink-soft); line-height:1.55; }
+
+@media (max-width:900px){ .events-grid{ grid-template-columns:1fr; } }
+
+/* ============================================================
+   LATEST SERMON
+   ============================================================ */
+.sermon-grid{
+  display:grid; grid-template-columns: 1.1fr .9fr; gap:60px; align-items:center;
+}
+.sermon-media{ position:relative; aspect-ratio: 16/10; }
+.sermon-media .ph{ position:absolute; inset:0; height:100%; }
+.play-btn{
+  position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+  width:78px; height:78px; border-radius:50%;
+  background: rgba(250,246,236,.92);
+  display:flex; align-items:center; justify-content:center;
+  color: var(--color-burgundy);
+  z-index:3;
+  transition: transform .4s var(--ease-out), background .3s ease;
+}
+.play-btn::before{
+  content:""; position:absolute; inset:-14px; border-radius:50%;
+  border:1px solid rgba(250,246,236,.5);
+  animation: ripple 2.6s ease-out infinite;
+}
+@keyframes ripple{ 0%{ transform:scale(.85); opacity:.9;} 100%{ transform:scale(1.5); opacity:0; } }
+.play-btn:hover{ transform:translate(-50%,-50%) scale(1.08); }
+.play-btn svg{ width:22px; height:22px; margin-left:3px; }
+
+.sermon-copy .series{ font-family: var(--font-mono); font-size:11.5px; letter-spacing:.08em; text-transform:uppercase; color: var(--color-gold-soft); }
+.sermon-copy h2{ font-family: var(--font-display); font-weight:500; font-size: clamp(28px,3.4vw,40px); line-height:1.15; margin-top:12px; }
+.sermon-copy p{ margin-top:18px; font-size:16px; line-height:1.7; color: rgba(250,246,236,.72); max-width:46ch; }
+.sermon-meta{ display:flex; gap:26px; margin-top:26px; }
+.sermon-meta div{ font-family: var(--font-mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase; color: rgba(250,246,236,.55); }
+.sermon-meta strong{ display:block; font-family: var(--font-body); font-size:14px; text-transform:none; letter-spacing:0; color: var(--color-cream); margin-top:4px; font-weight:600; }
+.sermon-copy .btn{ margin-top:32px; }
+
+@media (max-width:900px){ .sermon-grid{ grid-template-columns:1fr; gap:36px; } }
+
+/* ============================================================
+   SERVICES WE OFFER
+   ============================================================ */
+.services-grid{ display:grid; grid-template-columns: repeat(3,1fr); gap:24px; }
+.service-card{
+  position:relative;
+  height: 420px;
+  border-radius: var(--radius-md);
+  overflow:hidden;
+  isolation:isolate;
+}
+.service-card .ph{ position:absolute; inset:0; height:100%; border-radius:0; transition: transform .8s var(--ease-out); }
+.service-card:hover .ph{ transform: scale(1.08); }
+.service-card::after{
+  content:"";
+  position:absolute; inset:0;
+  background: linear-gradient(to top, rgba(15,13,11,.88) 0%, rgba(15,13,11,.35) 45%, rgba(15,13,11,.05) 70%);
+  z-index:1;
+}
+.service-content{
+  position:absolute; left:0; right:0; bottom:0; z-index:2;
+  padding: 28px 26px;
+  color: var(--color-cream);
+  transform: translateY(46px);
+  transition: transform .5s var(--ease-out);
+}
+.service-card:hover .service-content{ transform: translateY(0); }
+.service-content h3{ font-family: var(--font-display); font-size:23px; font-weight:600; }
+.service-content p{
+  font-size:13.5px; line-height:1.6; margin-top:8px; color: rgba(250,246,236,.75);
+  max-height:0; opacity:0; overflow:hidden;
+  transition: max-height .5s var(--ease-out), opacity .4s ease .05s;
+}
+.service-card:hover .service-content p{ max-height:80px; opacity:1; }
+.service-content a{
+  display:inline-flex; align-items:center; gap:8px;
+  margin-top:14px; font-size:13px; font-weight:600;
+  color: var(--color-gold-soft);
+  border-bottom: 1px solid rgba(231,200,119,.5);
+  padding-bottom:2px;
+}
+.service-content a svg{ width:13px; height:13px; transition: transform .3s var(--ease-out); }
+.service-content a:hover svg{ transform: translateX(4px); }
+
+@media (max-width:900px){ .services-grid{ grid-template-columns:1fr; } .service-card{ height:340px; } .service-content{ transform:none; } .service-content p{ max-height:80px; opacity:1; } }
+
+/* ============================================================
+   GIVING (small)
+   ============================================================ */
+.giving{
+  padding: 90px 0;
+  background: var(--color-burgundy);
+  color: var(--color-cream);
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.giving::before{
+  content:"";
+  position:absolute; top:-40%; left:50%; transform:translateX(-50%);
+  width:900px; height:900px; border-radius:50%;
+  background: radial-gradient(circle, rgba(231,200,119,.16), transparent 65%);
+  pointer-events:none;
+}
+.giving-inner{ position:relative; z-index:1; max-width:560px; margin:0 auto; }
+.giving h2{ font-family: var(--font-display); font-weight:500; font-size: clamp(26px,3.2vw,36px); }
+.giving p{ margin-top:14px; font-size:15.5px; line-height:1.65; color: rgba(250,246,236,.8); }
+.giving .btn{ margin-top:28px; }
+.giving .btn-ghost{ background: var(--color-cream); color: var(--color-night-deep); }
+.giving .btn-ghost:hover{ background: var(--color-cream-deep); }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer{
+  background: var(--color-night-deep);
+  color: rgba(250,246,236,.75);
+  padding: 90px 0 34px;
+}
+.footer-grid{
+  display:grid;
+  grid-template-columns: 1.3fr repeat(3, 1fr) 1fr;
+  gap: 40px;
+  padding-bottom: 60px;
+  border-bottom: 1px solid var(--color-line-dark);
+}
+.footer-brand .logo{ margin-bottom:16px; }
+.footer-brand p{ font-size:14px; line-height:1.7; max-width:30ch; color: rgba(250,246,236,.55); }
+.footer-social{ display:flex; gap:12px; margin-top:22px; }
+.footer-social a{
+  width:38px; height:38px; border-radius:50%;
+  border:1px solid var(--color-line-dark);
+  display:flex; align-items:center; justify-content:center;
+  transition: background .3s ease, border-color .3s ease, transform .3s var(--ease-out);
+}
+.footer-social a:hover{ background: var(--color-burgundy); border-color: var(--color-burgundy); transform: translateY(-3px); }
+.footer-social svg{ width:16px; height:16px; }
+
+.footer-col h4{
+  font-family: var(--font-mono); font-size:11.5px; letter-spacing:.08em; text-transform:uppercase;
+  color: var(--color-gold-soft); margin-bottom:18px;
+}
+.footer-col p, .footer-col a{ font-size:14.5px; line-height:1.7; color: rgba(250,246,236,.72); }
+.footer-col.links{ display:flex; flex-direction:column; gap:11px; }
+.footer-col.links a{ transition: color .25s ease, padding-left .25s ease; }
+.footer-col.links a:hover{ color: var(--color-gold-soft); padding-left:4px; }
+
+.footer-bottom{
+  display:flex; justify-content:space-between; align-items:center;
+  padding-top: 30px; font-size:12.5px; color: rgba(250,246,236,.4);
+  flex-wrap:wrap; gap:10px;
+}
+
+@media (max-width:960px){
+  .footer-grid{ grid-template-columns:1fr 1fr; }
+}
+@media (max-width:600px){
+  .footer-grid{ grid-template-columns:1fr; }
+}
+
+/* misc responsive */
+@media (max-width:640px){
+  .wrap,.wrap-narrow{ padding: 0 22px; }
+  section{ padding: var(--section-pad-y-sm) 0; }
+  .hero-header{ padding: 24px 22px; }
+  .hero-body{ padding: 24px 22px 60px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     HERO — LOGO / MENU top row, LABEL / HEADLINE / BODY / CTA
+     left, vertical parallax collage right (per Homepage Formula 4)
+     ============================================================ -->
+<header class="hero" id="home">
+  <div class="hero-header">
+    <a class="logo" href="#home">
+      <span class="mark"></span>
+      Calvary Tabernacle
+    </a>
+    <div style="position:relative;">
+      <button class="menu-toggle" id="heroMenuToggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="hero-dropdown" id="heroDropdown">
+        <a href="#about">About Us</a>
+        <a href="#new-here">New Here</a>
+        <a href="#ministries">Ministries</a>
+        <a href="#events">Events</a>
+        <a href="#sermons">Sermons</a>
+        <a href="#services">Services</a>
+        <a href="#give">Give</a>
+      </nav>
+    </div>
+  </div>
+
+  <div class="hero-body">
+    <div class="hero-content">
+      <span class="eyebrow">Join us this sunday</span>
+      <h1>Come as you are.<br>Find your place <em>at Calvary.</em></h1>
+      <p>Calvary Tabernacle is a family of believers gathering to worship, grow, and serve together — whatever brought you here, we're glad you came.</p>
+      <div class="hero-actions">
+        <a href="#new-here" class="btn btn-primary">Plan Your Visit</a>
+        <a href="#sermons" class="btn btn-ghost">Watch a Message</a>
+      </div>
+    </div>
+
+    <div class="hero-collage">
+      <div class="collage-col parallax-el" data-speed="0.09">
+        <div class="ph ph-1"></div>
+        <div class="ph ph-3"></div>
+      </div>
+      <div class="collage-col collage-col--b parallax-el" data-speed="-0.07">
+        <div class="ph ph-4"></div>
+        <div class="ph ph-5"></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============================================================
+     STICKY SECTION NAV — appears once you scroll past the hero
+     ============================================================ -->
+<nav class="sticky-nav" id="stickyNav">
+  <div class="sticky-nav-inner">
+    <a class="sticky-logo" href="#home"><span class="mark"></span>Calvary Tabernacle</a>
+    <div class="sticky-links" id="stickyLinks">
+      <a href="#about">About</a>
+      <a href="#new-here">New Here</a>
+      <a href="#ministries">Ministries</a>
+      <a href="#events">Events</a>
+      <a href="#sermons">Sermons</a>
+      <a href="#services">Services</a>
+    </div>
+    <div class="sticky-cta">
+      <a href="#give" class="btn btn-primary btn-small">Give</a>
+      <button class="sticky-nav-toggle" id="stickyToggle" aria-label="Toggle navigation">
+        <span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ============================================================
+     QUICK ABOUT
+     ============================================================ -->
+<section id="about">
+  <div class="wrap about-grid">
+    <div class="about-media reveal">
+      <div class="ph ph-2"></div>
+      <div class="about-accent"></div>
+    </div>
+    <div class="about-copy reveal reveal-delay-1">
+      <span class="eyebrow">ABOUT US</span>
+      <h2>A church built on grace, not perfection</h2>
+      <p>For years, Calvary Tabernacle has been a home for people chasing after Jesus — imperfect, hopeful, and grateful for grace. We believe church should feel less like a performance and more like family.</p>
+      <div class="about-actions">
+        <a href="#" class="btn btn-primary">More About Us</a>
+        <a href="#" class="btn btn-ghost">Get Directions</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     NEW HERE
+     ============================================================ -->
+<section class="section-tint" id="new-here">
+  <div class="wrap newhere-grid">
+    <div class="newhere-copy reveal">
+      <span class="eyebrow">First time here?</span>
+      <h2>Here's what to expect on Sunday</h2>
+      <p>No dress code, no pressure — just good people, honest worship, and a message that meets you where you are.</p>
+      <ul class="newhere-list">
+        <li><span class="num">1</span> Services run about 75 minutes, twice each Sunday morning.</li>
+        <li><span class="num">2</span> Kids' ministry is available and checked-in at the welcome desk.</li>
+        <li><span class="num">3</span> Stop by the welcome table — coffee's on us.</li>
+      </ul>
+      <a href="#" class="btn btn-primary">Plan Your Visit</a>
+    </div>
+    <div class="newhere-media reveal reveal-delay-1">
+      <div class="ph ph-6"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     MINISTRIES / GET INVOLVED
+     ============================================================ -->
+<section id="ministries">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Get involved</span>
+      <h2>Find your place to belong</h2>
+      <p>Community happens in the everyday. Wherever you are in life, there's a place for you to grow, serve, and be known.</p>
+    </div>
+    <div class="min-grid reveal">
+      <div class="min-card">
+        <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2l3 6 6 1-4.5 4.5L17 20l-5-3-5 3 1.5-6.5L4 9l6-1z"/></svg></div>
+        <h3>Calvary Kids Ministry</h3>
+        <p>Safe, fun, gospel-centered environments for infants through 5th grade.</p>
+        <a href="#">Learn more →</a>
+      </div>
+      <div class="min-card">
+        <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></div>
+        <h3>Exodus</h3>
+        <p>A space for students in grades 6–12 to ask real questions and find real friends.</p>
+        <a href="#">Learn more →</a>
+      </div>
+      <div class="min-card">
+        <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 18V6l9 6-9 6z"/></svg></div>
+        <h3>The Transformed Generation</h3>
+        <p>Musicians and vocalists leading our church into honest, heartfelt worship.</p>
+        <a href="#">Learn more →</a>
+      </div>
+      <div class="min-card">
+        <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4h16v12H7l-3 3z"/></svg></div>
+        <h3>Men's Ministry</h3>
+        <p>Life-on-life community meeting weekly in homes across the city.</p>
+        <a href="#">Learn more →</a>
+      </div>
+      <div class="min-card">
+        <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-4.35-9.5-8.5C.5 8.5 3 5 6.5 5c2 0 3.5 1 5.5 3 2-2 3.5-3 5.5-3C21 5 23.5 8.5 21.5 12.5 19 16.65 12 21 12 21z"/></svg></div>
+        <h3>Women's Ministry</h3>
+        <p>Serving our neighbors locally and supporting missionaries around the world.</p>
+        <a href="#">Learn more →</a>
+      </div>
+      <div class="min-card">
+        <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2C9 6 7 9 7 13a5 5 0 0010 0c0-4-2-7-5-11z"/></svg></div>
+        <h3>Seasoned Saints</h3>
+        <p>A dedicated team standing in the gap for our church and community.</p>
+        <a href="#">Learn more →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     UPCOMING EVENTS
+     ============================================================ -->
+<section class="section-tint" id="events">
+  <div class="wrap">
+    <div class="section-head-row">
+      <div class="section-head reveal" style="margin-bottom:0;">
+        <span class="eyebrow">Mark your calendar</span>
+        <h2>What's happening at Calvary</h2>
+      </div>
+      <a href="#" class="btn-underline reveal">See All Events →</a>
+    </div>
+    <div class="events-grid">
+      <div class="event-card reveal">
+        <div class="event-media">
+          <div class="ph ph-7"></div>
+          <div class="event-date"><div class="d">14</div><div class="m">Aug</div></div>
+        </div>
+        <div class="event-body">
+          <span class="time">6:30 – 8:00 PM</span>
+          <h3>Community Worship Night</h3>
+          <p>An evening of worship and prayer open to the whole church family.</p>
+        </div>
+      </div>
+      <div class="event-card reveal reveal-delay-1">
+        <div class="event-media">
+          <div class="ph ph-8"></div>
+          <div class="event-date"><div class="d">22</div><div class="m">Aug</div></div>
+        </div>
+        <div class="event-body">
+          <span class="time">9:00 AM – 12:00 PM</span>
+          <h3>Neighborhood Food Drive</h3>
+          <p>Join us as we serve our neighbors with groceries and a listening ear.</p>
+        </div>
+      </div>
+      <div class="event-card reveal reveal-delay-2">
+        <div class="event-media">
+          <div class="ph ph-9"></div>
+          <div class="event-date"><div class="d">5</div><div class="m">Sep</div></div>
+        </div>
+        <div class="event-body">
+          <span class="time">10:00 AM – 1:00 PM</span>
+          <h3>Fall Family Picnic</h3>
+          <p>Games, food, and fellowship for the whole family on the front lawn.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     LATEST SERMON
+     ============================================================ -->
+<section class="section-dark on-dark" id="sermons">
+  <div class="wrap sermon-grid">
+    <div class="sermon-media reveal">
+      <div class="ph ph-3" style="height:100%;"></div>
+      <button class="play-btn" aria-label="Play latest sermon">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+      </button>
+    </div>
+    <div class="sermon-copy reveal reveal-delay-1">
+      <span class="series">Latest Sermon</span>
+      <h2>Where Can I Go?</h2>
+      <p>Quoting the well known hymn, <em>"where can i go? seeking a refuge for my soul?"</em>, Bishop Barrington Goldson explores how the bible answers this question.</p>
+      <div class="sermon-meta">
+        <div>Speaker<strong>Bishop Barrington Goldson</strong></div>
+        <div>Date<strong>July 12, 2026</strong></div>
+        <div>Runtime<strong>58 min</strong></div>
+      </div>
+      <a href="#" class="btn btn-primary">Watch Full Message</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SERVICES WE OFFER
+     ============================================================ -->
+<section id="services">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">How we can help</span>
+      <h2>Services we offer</h2>
+      <p>From life's first days to its hardest goodbyes, we're honored to walk with you through every season.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="ph ph-7"></div>
+        <div class="service-content">
+          <h3>Baby Dedications</h3>
+          <p>Celebrate your child and commit to raising them in faith, together with our church family.</p>
+          <a href="#">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <div class="ph ph-8"></div>
+        <div class="service-content">
+          <h3>Bereavement</h3>
+          <p>Compassionate care and memorial support for you and your family in seasons of loss.</p>
+          <a href="#">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="ph ph-9"></div>
+        <div class="service-content">
+          <h3>Weddings</h3>
+          <p>Officiating, counseling, and planning support to help you start your marriage well.</p>
+          <a href="#">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     GIVING (compact)
+     ============================================================ -->
+<section class="giving" id="give">
+  <div class="wrap giving-inner reveal">
+    <h2>Give</h2>
+    <p>Your generosity keeps our doors open and our mission moving forward — thank you for partnering with us.</p>
+    <a href="#" class="btn btn-ghost">Give Now</a>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="logo" href="#home"><span class="mark"></span>Calvary Tabernacle</a>
+        <p>A family of believers gathering to worship, grow, and serve — together.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M15 8h-2a2 2 0 00-2 2v10M8 12h5"/><path d="M14 2H6a4 4 0 00-4 4v12a4 4 0 004 4h8"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="6" width="20" height="12" rx="3"/><path d="M10 9.5l5 2.5-5 2.5z" fill="currentColor" stroke="none"/></svg></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Email Us</h4>
+        <p><a href="mailto:info@calvarytabernacle.org">info@calvarytabernacle.org</a></p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Find Us</h4>
+        <p>78 North Franklin St, Hempstead, NY 11550</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Call Us</h4>
+        <p><a href="tel:+15166617920">(516) 661-7920</a></p>
+      </div>
+
+      <div class="footer-col links">
+        <h4>Quick Links</h4>
+        <a href="#about">About Us</a>
+        <a href="#new-here">New Here</a>
+        <a href="#ministries">Ministries</a>
+        <a href="#events">Events</a>
+        <a href="#sermons">Sermons</a>
+        <a href="#give">Give</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 Calvary Tabernacle. All rights reserved.</span>
+      <span>Made with care for our church family.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // ---- Hero dropdown menu ----
+  const heroToggle = document.getElementById('heroMenuToggle');
+  const heroDropdown = document.getElementById('heroDropdown');
+  heroToggle.addEventListener('click', () => {
+    const open = heroDropdown.classList.toggle('is-open');
+    heroToggle.classList.toggle('is-open', open);
+    heroToggle.setAttribute('aria-expanded', open);
+  });
+  document.addEventListener('click', (e) => {
+    if(!heroDropdown.contains(e.target) && !heroToggle.contains(e.target)){
+      heroDropdown.classList.remove('is-open');
+      heroToggle.classList.remove('is-open');
+      heroToggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+  heroDropdown.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    heroDropdown.classList.remove('is-open');
+    heroToggle.classList.remove('is-open');
+  }));
+
+  // ---- Sticky nav mobile toggle ----
+  const stickyToggle = document.getElementById('stickyToggle');
+  const stickyLinks = document.getElementById('stickyLinks');
+  stickyToggle.addEventListener('click', () => stickyLinks.classList.toggle('is-open'));
+  stickyLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => stickyLinks.classList.remove('is-open')));
+
+  // ---- Sticky nav visibility + shadow ----
+  const stickyNav = document.getElementById('stickyNav');
+  const heroEl = document.getElementById('home');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function onScroll(){
+    const heroBottom = heroEl.getBoundingClientRect().bottom;
+    stickyNav.classList.toggle('is-visible', heroBottom < 80);
+    stickyNav.classList.toggle('is-scrolled', window.scrollY > 40);
+  }
+  document.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // ---- Parallax on hero collage columns ----
+  const parallaxEls = document.querySelectorAll('.parallax-el');
+  let ticking = false;
+  function updateParallax(){
+    const scrollY = window.scrollY;
+    parallaxEls.forEach(el => {
+      const speed = parseFloat(el.dataset.speed) || 0.1;
+      el.style.transform = `translateY(${scrollY * speed}px)`;
+    });
+    ticking = false;
+  }
+  if(!reduceMotion){
+    document.addEventListener('scroll', () => {
+      if(!ticking){ requestAnimationFrame(updateParallax); ticking = true; }
+    }, { passive: true });
+    updateParallax();
+  }
+
+  // ---- Scroll reveal ----
+  const revealEls = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window && !reduceMotion){
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+    revealEls.forEach(el => io.observe(el));
+  } else {
+    revealEls.forEach(el => el.classList.add('is-visible'));
+  }
+})();
+</script>
+</body>
+</html>
