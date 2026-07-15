@@ -1,0 +1,395 @@
+[
+  {
+    "event": "First Sunday",
+    "time": "10:30 AM",
+    "date": "2026-01-04",
+    "image": "/events/first-sunday.jpg",
+    "description": "First worship service of the year."
+  },
+  {
+    "event": "40 Days Abide Fellowship",
+    "time": "10:30 AM",
+    "date": "2026-01-11",
+    "image": "/events/abide-fellowship.jpg",
+    "description": "Beginning of the 40 Days Abide Fellowship."
+  },
+  {
+    "event": "1st Communion",
+    "time": "10:30 AM",
+    "date": "2026-01-18",
+    "image": "/events/communion.jpg",
+    "description": "First communion service of the year."
+  },
+  {
+    "event": "Prayer & Fasting",
+    "time": "TBD",
+    "date": "2026-01-19/2026-01-21",
+    "image": "/events/prayer-fasting.jpg",
+    "description": "Three days dedicated to prayer and fasting."
+  },
+  {
+    "event": "All Leaders Training",
+    "time": "10:00 AM",
+    "date": "2026-01-24",
+    "image": "/events/leaders-training.jpg",
+    "description": "Leadership development and ministry training."
+  },
+  {
+    "event": "Winter Tuesday Empowerment",
+    "time": "TBD",
+    "date": "2026-01-27",
+    "image": "/events/tuesday-empowerment.jpg",
+    "description": "Winter Tuesday empowerment sessions begin."
+  },
+  {
+    "event": "Boots on the Ground",
+    "time": "10:30 AM",
+    "date": "2026-02-01",
+    "image": "/events/boots-ground.jpg",
+    "description": "Community outreach and evangelism."
+  },
+  {
+    "event": "Valentine Event",
+    "time": "TBD",
+    "date": "2026-02-13",
+    "image": "/events/valentine.jpg",
+    "description": "Special Valentine's fellowship event."
+  },
+  {
+    "event": "Black History Celebration",
+    "time": "10:30 AM",
+    "date": "2026-02-22",
+    "image": "/events/black-history.jpg",
+    "description": "Celebrating Black history and heritage."
+  },
+  {
+    "event": "All Leaders Meeting",
+    "time": "2:00 PM",
+    "date": "2026-02-22",
+    "image": "/events/leaders-meeting.jpg",
+    "description": "Monthly meeting for ministry leaders."
+  },
+  {
+    "event": "Easter Launch",
+    "time": "10:30 AM",
+    "date": "2026-03-01",
+    "image": "/events/easter-launch.jpg",
+    "description": "Kickoff for the Easter season."
+  },
+  {
+    "event": "Growth Dinner",
+    "time": "10:30 AM",
+    "date": "2026-03-08",
+    "image": "/events/growth-dinner.jpg",
+    "description": "Dinner focused on spiritual growth."
+  },
+  {
+    "event": "Boots on the Ground & Media Outreach",
+    "time": "10:00 AM",
+    "date": "2026-03-14",
+    "image": "/events/media-outreach.jpg",
+    "description": "Outreach and media evangelism."
+  },
+  {
+    "event": "Prayer & Fasting",
+    "time": "TBD",
+    "date": "2026-03-20",
+    "image": "/events/prayer-fasting.jpg",
+    "description": "Weekend of prayer and fasting."
+  },
+
+  {
+    "event": "Boots on the Ground & Media Outreach",
+    "time": "10:00 AM",
+    "date": "2026-03-21",
+    "image": "/events/media-outreach.jpg",
+    "description": "Outreach and media evangelism."
+  },
+  {
+    "event": "Communion",
+    "time": "10:30 AM",
+    "date": "2026-03-22",
+    "image": "/events/communion.jpg",
+    "description": "Communion worship service."
+  },
+  {
+    "event": "Boots on the Ground & Media Outreach",
+    "time": "10:00 AM",
+    "date": "2026-03-28",
+    "image": "/events/media-outreach.jpg",
+    "description": "Outreach and media evangelism."
+  },
+  {
+    "event": "Palm Sunday & Leaders Meeting",
+    "time": "10:30 AM & 2:00 PM",
+    "date": "2026-03-29",
+    "image": "/events/palm-sunday.jpg",
+    "description": "Palm Sunday worship and leaders meeting."
+  },
+  {
+    "event": "Good Friday",
+    "time": "TBD",
+    "date": "2026-04-03",
+    "image": "/events/good-friday.jpg",
+    "description": "Good Friday remembrance service."
+  },
+  {
+    "event": "Easter Sunday",
+    "time": "10:30 AM",
+    "date": "2026-04-05",
+    "image": "/events/easter.jpg",
+    "description": "Celebrate the resurrection of Christ."
+  },
+  {
+    "event": "After Easter Sunday",
+    "time": "10:30 AM",
+    "date": "2026-04-12",
+    "image": "/events/after-easter.jpg",
+    "description": "Special post-Easter worship service."
+  },
+  {
+    "event": "Prayer Walk",
+    "time": "10:00 AM",
+    "date": "2026-04-25",
+    "image": "/events/prayer-walk.jpg",
+    "description": "Community prayer walk."
+  },
+  {
+    "event": "All Leaders Meeting",
+    "time": "2:00 PM",
+    "date": "2026-04-26",
+    "image": "/events/leaders-meeting.jpg",
+    "description": "Monthly meeting for ministry leaders."
+  },
+  {
+    "event": "Mother's Day Celebration",
+    "time": "10:30 AM",
+    "date": "2026-05-10",
+    "image": "/events/mothers-day.jpg",
+    "description": "Celebrate mothers and families."
+  },
+  {
+    "event": "Hand Maiden's Weekend",
+    "time": "TBD",
+    "date": "2026-05-15/2026-05-17",
+    "image": "/events/handmaidens.jpg",
+    "description": "Women's ministry weekend."
+  },
+  {
+    "event": "Pentecost Sunday",
+    "time": "10:30 AM",
+    "date": "2026-05-24",
+    "image": "/events/pentecost.jpg",
+    "description": "Celebrate Pentecost Sunday."
+  },
+  {
+    "event": "All Leaders Meeting",
+    "time": "2:00 PM",
+    "date": "2026-05-31",
+    "image": "/events/leaders-meeting.jpg",
+    "description": "Monthly meeting for ministry leaders."
+  },
+  {
+    "event": "CKM Crusade & Teachers Appreciation",
+    "time": "10:30 AM",
+    "date": "2026-06-07",
+    "image": "/events/crusade.jpg",
+    "description": "Crusade and teacher appreciation."
+  },
+  {
+    "event": "Prayer Breakfast",
+    "time": "10:30 AM",
+    "date": "2026-06-14",
+    "image": "/events/prayer-breakfast.jpg",
+    "description": "Breakfast fellowship with prayer."
+  },
+  {
+    "event": "Father's Day & Juneteenth Celebration",
+    "time": "10:30 AM",
+    "date": "2026-06-21",
+    "image": "/events/fathers-day.jpg",
+    "description": "Celebrate fathers and Juneteenth."
+  },
+  {
+    "event": "All Leaders Meeting",
+    "time": "2:00 PM",
+    "date": "2026-06-28",
+    "image": "/events/leaders-meeting.jpg",
+    "description": "Monthly meeting for ministry leaders."
+  },
+  {
+    "event": "Calvary Summer Program",
+    "time": "TBD",
+    "date": "2026-06-29",
+    "image": "/events/summer-program.jpg",
+    "description": "Annual youth summer program."
+  },
+  {
+    "event": "Cultural & Graduation Day",
+    "time": "10:30 AM",
+    "date": "2026-07-05",
+    "image": "/events/cultural-day.jpg",
+    "description": "Celebrate culture and graduates."
+  },
+  {
+    "event": "Prayer & Fasting",
+    "time": "TBD",
+    "date": "2026-07-10/2026-07-12",
+    "image": "/events/prayer-fasting.jpg",
+    "description": "Weekend of prayer and fasting."
+  },
+  {
+    "event": "Communion",
+    "time": "10:30 AM",
+    "date": "2026-07-12",
+    "image": "/events/communion.jpg",
+    "description": "Communion worship service."
+  },
+  {
+    "event": "Called Out Sunday",
+    "time": "10:30 AM",
+    "date": "2026-07-19",
+    "image": "photos/DSC01292.jpg",
+    "description": "Special Called Out Sunday service for our youth and young adults."
+  },
+  {
+    "event": "All Leaders Meeting",
+    "time": "2:00 PM",
+    "date": "2026-07-26",
+    "image": "/events/leaders-meeting.jpg",
+    "description": "Monthly meeting for ministry leaders."
+  },
+  {
+    "event": "Tri-State Concert 27",
+    "time": "8:00 PM",
+    "date": "2026-08-01",
+    "image": "photos/tristate.jpg",
+    "description": "Annual Tri-State worship concert."
+  },
+  {
+    "event": "Church Picnic",
+    "time": "10:00 AM",
+    "date": "2026-08-15",
+    "image": "/events/picnic.jpg",
+    "description": "Church family picnic and fellowship."
+  },
+  {
+    "event": "Influence Day",
+    "time": "10:00 AM",
+    "date": "2026-08-22",
+    "image": "/events/influence-day.jpg",
+    "description": "Day focused on positive community impact."
+  },
+  {
+    "event": "Youth Weekend",
+    "time": "TBD",
+    "date": "2026-08-29/2026-09-01",
+    "image": "/events/youth-weekend.jpg",
+    "description": "Weekend activities for youth."
+  },
+  {
+    "event": "Grandparents Day",
+    "time": "10:30 AM",
+    "date": "2026-09-13",
+    "image": "/events/grandparents.jpg",
+    "description": "Honor and celebrate grandparents."
+  },
+  {
+    "event": "All Leaders Meeting",
+    "time": "2:00 PM",
+    "date": "2026-09-20",
+    "image": "/events/leaders-meeting.jpg",
+    "description": "Monthly meeting for ministry leaders."
+  },
+  {
+    "event": "Late Night Prayer",
+    "time": "10:00 PM - 2:00 AM",
+    "date": "2026-09-25",
+    "image": "/events/late-night-prayer.jpg",
+    "description": "Extended overnight prayer gathering."
+  },
+  {
+    "event": "10 Days of Prayer & Fasting",
+    "time": "TBD",
+    "date": "2026-09-25/2026-10-04",
+    "image": "/events/10-days-prayer.jpg",
+    "description": "Ten days devoted to prayer and fasting."
+  },
+  {
+    "event": "Prayer Day",
+    "time": "10:00 AM - 1:00 PM",
+    "date": "2026-10-03",
+    "image": "/events/prayer-day.jpg",
+    "description": "Dedicated churchwide prayer event."
+  },
+  {
+    "event": "All White Communion",
+    "time": "10:30 AM",
+    "date": "2026-10-04",
+    "image": "/events/all-white.jpg",
+    "description": "Communion service in white attire."
+  },
+  {
+    "event": "35th Anniversary Weekend",
+    "time": "TBD",
+    "date": "2026-10-16/2026-10-18",
+    "image": "/events/35th-anniversary.jpg",
+    "description": "Celebrate the church's 35th anniversary."
+  },
+  {
+    "event": "All Leaders Meeting",
+    "time": "2:00 PM",
+    "date": "2026-10-25",
+    "image": "/events/leaders-meeting.jpg",
+    "description": "Monthly meeting for ministry leaders."
+  },
+  {
+    "event": "TTG Conference",
+    "time": "TBD",
+    "date": "2026-10-31/2026-11-01",
+    "image": "/events/ttg.jpg",
+    "description": "TTG conference and ministry sessions."
+  },
+  {
+    "event": "Veterans & First Responders",
+    "time": "10:30 AM",
+    "date": "2026-11-08",
+    "image": "/events/veterans.jpg",
+    "description": "Honor veterans and first responders."
+  },
+  {
+    "event": "Thanksgiving Feeding",
+    "time": "TBD",
+    "date": "2026-11-24",
+    "image": "/events/thanksgiving-feeding.jpg",
+    "description": "Community Thanksgiving meal outreach."
+  },
+  {
+    "event": "Children's Community Christmas Party",
+    "time": "10:00 AM",
+    "date": "2026-12-12",
+    "image": "/events/christmas-party.jpg",
+    "description": "Christmas celebration for children."
+  },
+  {
+    "event": "Christmas Production",
+    "time": "8:00 PM",
+    "date": "2026-12-20",
+    "image": "/events/christmas-production.jpg",
+    "description": "Special Christmas worship production."
+  },
+  {
+    "event": "Last Sunday",
+    "time": "10:30 AM",
+    "date": "2026-12-27",
+    "image": "/events/last-sunday.jpg",
+    "description": "Final Sunday worship of the year."
+  },
+  {
+    "event": "Watch Night Service",
+    "time": "9:30 PM",
+    "date": "2026-12-31",
+    "image": "/events/watch-night.jpg",
+    "description": "End the year together in worship."
+  }
+]
